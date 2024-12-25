@@ -30,7 +30,8 @@ public class PacketPlayerPositionAndLook implements PacketOut {
     private float pitch;
     private int teleportId;
 
-    public PacketPlayerPositionAndLook() {}
+    public PacketPlayerPositionAndLook() {
+    }
 
     public PacketPlayerPositionAndLook(double x, double y, double z, float yaw, float pitch, int teleportId) {
         this.x = x;
@@ -43,6 +44,15 @@ public class PacketPlayerPositionAndLook implements PacketOut {
 
     @Override
     public void encode(ByteMessage msg, Version version) {
+        if (version.moreOrEqual(Version.V1_21_2)) {
+            encodeModern(msg, version);
+            return;
+        }
+
+        encodeLegacy(msg, version);
+    }
+
+    private void encodeLegacy(ByteMessage msg, Version version) {
         msg.writeDouble(x);
         msg.writeDouble(y + (version.less(Version.V1_8) ? 1.62F : 0));
         msg.writeDouble(z);
@@ -64,4 +74,20 @@ public class PacketPlayerPositionAndLook implements PacketOut {
         }
     }
 
+    private void encodeModern(ByteMessage msg, Version version) {
+        msg.writeVarInt(teleportId);
+
+        msg.writeDouble(x);
+        msg.writeDouble(y);
+        msg.writeDouble(z);
+
+        msg.writeDouble(0);
+        msg.writeDouble(0);
+        msg.writeDouble(0);
+
+        msg.writeFloat(yaw);
+        msg.writeFloat(pitch);
+
+        msg.writeInt(0x08);
+    }
 }

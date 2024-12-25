@@ -76,6 +76,43 @@
       }
     ]
   },
+  "minecraft:instrument": {
+    type: "minecraft:instrument",
+    value: [
+      {
+        name: "minecraft:admire_goat_horn",
+        id: 0
+      },
+      {
+        name: "minecraft:call_goat_horn",
+        id: 1
+      },
+      {
+        name: "minecraft:dream_goat_horn",
+        id: 2
+      },
+      {
+        name: "minecraft:feel_goat_horn",
+        id: 3
+      },
+      {
+        name: "minecraft:ponder_goat_horn",
+        id: 4
+      },
+      {
+        name: "minecraft:seek_goat_horn",
+        id: 5
+      },
+      {
+        name: "minecraft:sing_goat_horn",
+        id: 6
+      },
+      {
+        name: "minecraft:yearn_goat_horn",
+        id: 7
+      }
+    ]
+  },
   "minecraft:trim_material": {
     type: "minecraft:trim_material",
     value: [
@@ -847,160 +884,168 @@
         id: 7
       },
       {
-        name: "minecraft:explosion",
+        name: "minecraft:ender_pearl",
         id: 8
       },
       {
-        name: "minecraft:fall",
+        name: "minecraft:explosion",
         id: 9
       },
       {
-        name: "minecraft:falling_anvil",
+        name: "minecraft:fall",
         id: 10
       },
       {
-        name: "minecraft:falling_block",
+        name: "minecraft:falling_anvil",
         id: 11
       },
       {
-        name: "minecraft:falling_stalactite",
+        name: "minecraft:falling_block",
         id: 12
       },
       {
-        name: "minecraft:fireball",
+        name: "minecraft:falling_stalactite",
         id: 13
       },
       {
-        name: "minecraft:fireworks",
+        name: "minecraft:fireball",
         id: 14
       },
       {
-        name: "minecraft:fly_into_wall",
+        name: "minecraft:fireworks",
         id: 15
       },
       {
-        name: "minecraft:freeze",
+        name: "minecraft:fly_into_wall",
         id: 16
       },
       {
-        name: "minecraft:generic",
+        name: "minecraft:freeze",
         id: 17
       },
       {
-        name: "minecraft:generic_kill",
+        name: "minecraft:generic",
         id: 18
       },
       {
-        name: "minecraft:hot_floor",
+        name: "minecraft:generic_kill",
         id: 19
       },
       {
-        name: "minecraft:in_fire",
+        name: "minecraft:hot_floor",
         id: 20
       },
       {
-        name: "minecraft:in_wall",
+        name: "minecraft:in_fire",
         id: 21
       },
       {
-        name: "minecraft:indirect_magic",
+        name: "minecraft:in_wall",
         id: 22
       },
       {
-        name: "minecraft:lava",
+        name: "minecraft:indirect_magic",
         id: 23
       },
       {
-        name: "minecraft:lightning_bolt",
+        name: "minecraft:lava",
         id: 24
       },
       {
-        name: "minecraft:magic",
+        name: "minecraft:lightning_bolt",
         id: 25
       },
       {
-        name: "minecraft:mob_attack",
+        name: "minecraft:mace_smash",
         id: 26
       },
       {
-        name: "minecraft:mob_attack_no_aggro",
+        name: "minecraft:magic",
         id: 27
       },
       {
-        name: "minecraft:mob_projectile",
+        name: "minecraft:mob_attack",
         id: 28
       },
       {
-        name: "minecraft:on_fire",
+        name: "minecraft:mob_attack_no_aggro",
         id: 29
       },
       {
-        name: "minecraft:out_of_world",
+        name: "minecraft:mob_projectile",
         id: 30
       },
       {
-        name: "minecraft:outside_border",
+        name: "minecraft:on_fire",
         id: 31
       },
       {
-        name: "minecraft:player_attack",
+        name: "minecraft:out_of_world",
         id: 32
       },
       {
-        name: "minecraft:player_explosion",
+        name: "minecraft:outside_border",
         id: 33
       },
       {
-        name: "minecraft:sonic_boom",
+        name: "minecraft:player_attack",
         id: 34
       },
       {
-        name: "minecraft:spit",
+        name: "minecraft:player_explosion",
         id: 35
       },
       {
-        name: "minecraft:stalagmite",
+        name: "minecraft:sonic_boom",
         id: 36
       },
       {
-        name: "minecraft:starve",
+        name: "minecraft:spit",
         id: 37
       },
       {
-        name: "minecraft:sting",
+        name: "minecraft:stalagmite",
         id: 38
       },
       {
-        name: "minecraft:sweet_berry_bush",
+        name: "minecraft:starve",
         id: 39
       },
       {
-        name: "minecraft:thorns",
+        name: "minecraft:sting",
         id: 40
       },
       {
-        name: "minecraft:thrown",
+        name: "minecraft:sweet_berry_bush",
         id: 41
       },
       {
-        name: "minecraft:trident",
+        name: "minecraft:thorns",
         id: 42
       },
       {
-        name: "minecraft:unattributed_fireball",
+        name: "minecraft:thrown",
         id: 43
       },
       {
-        name: "minecraft:wind_charge",
+        name: "minecraft:trident",
         id: 44
       },
       {
-        name: "minecraft:wither",
+        name: "minecraft:unattributed_fireball",
         id: 45
       },
       {
-        name: "minecraft:wither_skull",
+        name: "minecraft:wind_charge",
         id: 46
+      },
+      {
+        name: "minecraft:wither",
+        id: 47
+      },
+      {
+        name: "minecraft:wither_skull",
+        id: 48
       }
     ]
   },

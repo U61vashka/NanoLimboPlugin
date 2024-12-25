@@ -24,6 +24,7 @@ import org.spongepowered.configurate.serialize.TypeSerializer;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Locale;
 
 public class InfoForwarding {
 
@@ -77,7 +78,7 @@ public class InfoForwarding {
             InfoForwarding forwarding = new InfoForwarding();
 
             try {
-                forwarding.type = Type.valueOf(node.node("type").getString("").toUpperCase());
+                forwarding.type = Type.valueOf(node.node("type").getString("").toUpperCase(Locale.ROOT));
             } catch (IllegalArgumentException e) {
                 throw new SerializationException("Undefined info forwarding type");
             }

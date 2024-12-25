@@ -37,6 +37,11 @@ import ua.nanit.limbo.connection.PacketHandler;
 import ua.nanit.limbo.connection.PacketSnapshots;
 import ua.nanit.limbo.world.DimensionRegistry;
 
+import java.nio.file.Paths;
+import java.util.Locale;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
 public final class LimboServer {
     private boolean running = false;
 
@@ -90,7 +95,7 @@ public final class LimboServer {
         ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.DISABLED);
         packetHandler = new PacketHandler(this);
         dimensionRegistry = new DimensionRegistry(classLoader);
-        dimensionRegistry.load(config.getDimensionType());
+        dimensionRegistry.load("minecraft:" + config.getDimensionType().toLowerCase(Locale.ROOT));
         connections = new Connections();
 
         packetSnapshots = new PacketSnapshots(this);

@@ -19,6 +19,7 @@ package ua.nanit.limbo.protocol;
 
 import ua.nanit.limbo.protocol.registry.Version;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,8 +30,8 @@ import java.util.Map;
 public class PacketSnapshot implements PacketOut {
 
     private final PacketOut packet;
-    private final Map<Version, byte[]> versionMessages = new HashMap<>();
-    private final Map<Version, Version> mappings = new HashMap<>();
+    private final Map<Version, byte[]> versionMessages = new EnumMap<>(Version.class);
+    private final Map<Version, Version> mappings = new EnumMap<>(Version.class);
 
     public PacketSnapshot(PacketOut packet) {
         this.packet = packet;

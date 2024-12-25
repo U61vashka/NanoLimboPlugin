@@ -49,7 +49,7 @@ public class PacketLoginSuccess implements PacketOut {
         if (version.moreOrEqual(Version.V1_19)) {
             msg.writeVarInt(0);
         }
-        if (version.moreOrEqual(Version.V1_20_5)) {
+        if (version.fromTo(Version.V1_20_5, Version.V1_21)) {
             msg.writeBoolean(true);
         }
     }

@@ -26,6 +26,7 @@ import ua.nanit.limbo.util.Colors;
 import ua.nanit.limbo.util.NbtMessageUtil;
 
 import java.lang.reflect.Type;
+import java.util.Locale;
 
 public class BossBar {
 
@@ -119,13 +120,13 @@ public class BossBar {
                 throw new SerializationException("BossBar health value must be between 0.0 and 1.0");
 
             try {
-                bossBar.setColor(Color.valueOf(node.node("color").getString("").toUpperCase()));
+                bossBar.setColor(Color.valueOf(node.node("color").getString("").toUpperCase(Locale.ROOT)));
             } catch (IllegalArgumentException e) {
                 throw new SerializationException("Invalid bossbar color");
             }
 
             try {
-                bossBar.setDivision(Division.valueOf(node.node("division").getString("").toUpperCase()));
+                bossBar.setDivision(Division.valueOf(node.node("division").getString("").toUpperCase(Locale.ROOT)));
             } catch (IllegalArgumentException e) {
                 throw new SerializationException("Invalid bossbar division");
             }

@@ -24,6 +24,7 @@ import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
+import com.grack.nanojson.JsonParserException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -32,7 +33,6 @@ import org.jetbrains.annotations.NotNull;
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
-import com.grack.nanojson.JsonParserException;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFutureListener;
@@ -50,6 +50,8 @@ import ua.nanit.limbo.protocol.registry.Version;
 import ua.nanit.limbo.server.LimboServer;
 import ua.nanit.limbo.server.Log;
 import ua.nanit.limbo.util.UuidUtil;
+
+import java.util.List;
 
 public class ClientConnection extends ChannelInboundHandlerAdapter {
 
@@ -181,9 +183,7 @@ public class ClientConnection extends ChannelInboundHandlerAdapter {
             if (clientVersion.moreOrEqual(Version.V1_20_3)) {
                 writePacket(server.getPacketSnapshots().getPacketStartWaitingChunks());
 
-                for (PacketSnapshot chunk : server.getPacketSnapshots().getPacketsEmptyChunks()) {
-                    writePacket(chunk);
-                }
+                writePackets(server.getPacketSnapshots().getPacketsEmptyChunks());
             }
 
             sendKeepAlive();
@@ -203,14 +203,30 @@ public class ClientConnection extends ChannelInboundHandlerAdapter {
             writePacket(server.getPacketSnapshots().getPacketPluginMessage());
 
         if (clientVersion.moreOrEqual(Version.V1_20_5)) {
-            for (PacketSnapshot packet : server.getPacketSnapshots().getPacketsRegistryData()) {
-                writePacket(packet);
+            writePacket(server.getPacketSnapshots().getPacketKnownPacks());
+
+            if (clientVersion.moreOrEqual(Version.V1_21_4)) {
+                writePackets(server.getPacketSnapshots().getPacketsRegistryData1_21_4());
+            } else if (clientVersion.moreOrEqual(Version.V1_21_2)) {
+                writePackets(server.getPacketSnapshots().getPacketsRegistryData1_21_2());
+            } else if (clientVersion.moreOrEqual(Version.V1_21)) {
+                writePackets(server.getPacketSnapshots().getPacketsRegistryData1_21());
+            } else if (clientVersion.moreOrEqual(Version.V1_20_5)) {
+                writePackets(server.getPacketSnapshots().getPacketsRegistryData1_20_5());
             }
+
+            writePacket(server.getPacketSnapshots().getPacketUpdateTags());
         } else {
             writePacket(server.getPacketSnapshots().getPacketRegistryData());
         }
 
         sendPacket(server.getPacketSnapshots().getPacketFinishConfiguration());
+    }
+
+    private void writePackets(List<PacketSnapshot> packets) {
+        for (PacketSnapshot packet : packets) {
+            writePacket(packet);
+        }
     }
 
     public void disconnectLogin(String reason) {
@@ -289,6 +305,7 @@ public class ClientConnection extends ChannelInboundHandlerAdapter {
         try {
             arr = JsonParser.array().from(split[3]);
         } catch (JsonParserException e) {
+            e.printStackTrace();
             return false;
         }
 

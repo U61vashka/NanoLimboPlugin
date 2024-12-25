@@ -194,8 +194,7 @@ public class ByteMessage extends ByteBuf {
             for (CompoundBinaryTag tag : compoundTags) {
                 BinaryTagIO.writer().write(tag, (OutputStream) stream);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new EncoderException("Cannot write NBT CompoundTag");
         }
     }
@@ -203,8 +202,7 @@ public class ByteMessage extends ByteBuf {
     public CompoundBinaryTag readCompoundTag() {
         try (ByteBufInputStream stream = new ByteBufInputStream(buf)) {
             return BinaryTagIO.reader().read((InputStream) stream);
-        }
-        catch (IOException thrown) {
+        } catch (IOException thrown) {
             throw new DecoderException("Cannot read NBT CompoundTag");
         }
     }
@@ -212,8 +210,7 @@ public class ByteMessage extends ByteBuf {
     public void writeCompoundTag(CompoundBinaryTag compoundTag) {
         try (ByteBufOutputStream stream = new ByteBufOutputStream(buf)) {
             BinaryTagIO.writer().write(compoundTag, (OutputStream) stream);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new EncoderException("Cannot write NBT CompoundTag");
         }
     }
@@ -226,42 +223,33 @@ public class ByteMessage extends ByteBuf {
             if (binaryTag instanceof CompoundBinaryTag) {
                 CompoundBinaryTag tag = (CompoundBinaryTag) binaryTag;
                 tag.type().write(tag, stream);
-            }
-            else if (binaryTag instanceof ByteBinaryTag) {
+            } else if (binaryTag instanceof ByteBinaryTag) {
                 ByteBinaryTag tag = (ByteBinaryTag) binaryTag;
                 tag.type().write(tag, stream);
-            }
-            else if (binaryTag instanceof ShortBinaryTag) {
+            } else if (binaryTag instanceof ShortBinaryTag) {
                 ShortBinaryTag tag = (ShortBinaryTag) binaryTag;
                 tag.type().write(tag, stream);
-            }
-            else  if (binaryTag instanceof IntBinaryTag) {
+            } else if (binaryTag instanceof IntBinaryTag) {
                 IntBinaryTag tag = (IntBinaryTag) binaryTag;
                 tag.type().write(tag, stream);
-            }
-            else if (binaryTag instanceof LongBinaryTag) {
+            } else if (binaryTag instanceof LongBinaryTag) {
                 LongBinaryTag tag = (LongBinaryTag) binaryTag;
                 tag.type().write(tag, stream);
-            }
-            else if (binaryTag instanceof DoubleBinaryTag) {
+            } else if (binaryTag instanceof DoubleBinaryTag) {
                 DoubleBinaryTag tag = (DoubleBinaryTag) binaryTag;
                 tag.type().write(tag, stream);
-            }
-            else if (binaryTag instanceof StringBinaryTag) {
+            } else if (binaryTag instanceof StringBinaryTag) {
                 StringBinaryTag tag = (StringBinaryTag) binaryTag;
                 tag.type().write(tag, stream);
-            }
-            else if (binaryTag instanceof ListBinaryTag) {
+            } else if (binaryTag instanceof ListBinaryTag) {
                 ListBinaryTag tag = (ListBinaryTag) binaryTag;
                 tag.type().write(tag, stream);
-            }
-            else if (binaryTag instanceof EndBinaryTag) {
+            } else if (binaryTag instanceof EndBinaryTag) {
                 EndBinaryTag tag = (EndBinaryTag) binaryTag;
                 tag.type().write(tag, stream);
             }
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new EncoderException("Cannot write NBT CompoundTag");
         }
     }
@@ -269,8 +257,7 @@ public class ByteMessage extends ByteBuf {
     public void writeNbtMessage(NbtMessage nbtMessage, Version version) {
         if (version.moreOrEqual(Version.V1_20_3)) {
             writeNamelessCompoundTag(nbtMessage.getTag());
-        }
-        else {
+        } else {
             writeString(nbtMessage.getJson());
         }
     }
